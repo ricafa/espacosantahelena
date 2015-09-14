@@ -1,6 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Edicula St. Helena</h1>
+
+<% if user_signed_in?  %>
+	<%= link_to 'Novo Evento', new_party_path %> | <%= link_to 'Sair', destroy_user_session_path, :method=>'delete', data: {confirm: "Deseja sair?"} %>
+<% else %>
+	<%= link_to 'Login', new_user_session_path %>
+<% end %>
+
 <div id="calendar">
 	<h2 id="month">
 		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
@@ -14,12 +21,15 @@
 	<%= t.day do |day, parties| %>
 	<%= day.day %>
 	<% parties.each do |party| %>
-	<%= link_to h(party.title), party %><br>
-	<%= link_to 'Editar', edit_party_path(party) %> | <%= link_to 'Deletar', party, method: :delete, data: { confirm: 'Tem certeza?' } %>
+	  <% if user_signed_in?  %>
+	  	<%= link_to h(party.title), party %><br>
+		  <%= link_to 'Editar', edit_party_path(party) %> | <%= link_to 'Deletar', party, method: :delete, data: { confirm: 'Tem certeza?' } %>
+	  <% else %>
+	  	<br /> <%= party.title %>
+	  <% end %>
 	<% end %>
 	<% end %>
 	<% end %>
 </div>
-<%= link_to 'Novo Evento', new_party_path %>
 
 <br>
