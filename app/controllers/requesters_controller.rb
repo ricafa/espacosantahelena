@@ -14,15 +14,11 @@ class RequestersController < ApplicationController
 
   # GET /requesters/new
   def new
-  	@goal = Goal.all
-  	@goal_options = Goal.all.map{|u| [ u.name, u.id ] }
     @requester = Requester.new
   end
 
   # GET /requesters/1/edit
   def edit
-  	@goal = Goal.all
-  	@goal_options = Goal.all.map{|u| [ u.name, u.id ] }
   end
 
   # POST /requesters

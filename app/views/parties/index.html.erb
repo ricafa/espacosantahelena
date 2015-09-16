@@ -1,7 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Calendário de agendamentos</h1>
-
 <div id="calendar">
 	<h2 id="month">
 		<%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-%d") %>
@@ -26,7 +24,11 @@
 				  <% end %>				  
 				<% end %>
 				<% if available %>
-				  <br /> <li class="available"><%= link_to 'Disponivel', new_requester_path %></li>
+					<% if Date.today.day <= day.day %>
+					  <% if Date.today.month == day.month %>
+					    <br /> <li class="available"><%= link_to 'Disponivel', new_requester_path %></li>
+					   <% end %>
+					<% end %>
 				<% end %>
 			</ul>
 		<% end %>
