@@ -32,8 +32,8 @@
     <%= f.check_box :accept_terms %> Sim, eu aceito.
   </div>
 	<div class="field">
-		<%= f.label :goal_id %><br>
-	  <%= f.collection_select :goal_id, Goal.all, :id, :name, :selected => @requester.goal.id %>
+		Qual a finalidade do evento?<br>
+	  <%= f.collection_select :goal_id, Goal.all, :id, :name, :selected => @requester.goal %>
 	</div>
   <div class="actions">
     <%= f.submit %>
