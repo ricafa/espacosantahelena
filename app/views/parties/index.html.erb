@@ -24,10 +24,8 @@
 				  <% end %>				  
 				<% end %>
 				<% if available %>
-					<% if Date.today.day <= day.day %>
-					  <% if Date.today.month == day.month %>
-					    <br /> <li class="available"><%= link_to 'Disponivel', new_requester_path %></li>
-					   <% end %>
+					<% if (Date.today.day <= day.day && Date.today.month <= day.month) || Date.today.month < day.month || Date.today.year < day.year%>
+					  <br /> <li class="available"><%= link_to 'Disponivel', new_requester_path %></li>
 					<% end %>
 				<% end %>
 			</ul>
