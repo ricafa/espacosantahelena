@@ -1,0 +1,41 @@
+<%= form_for(@requester) do |f| %>
+  <% if @requester.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@requester.errors.count, "error") %> prohibited this requester from being saved:</h2>
+
+      <ul>
+      <% @requester.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    Se a festa possuir horário para terminar, favor preencher abaixo<br>
+    <%= f.text_field :finish_at %>
+  </div>
+  <div class="field">
+    Marcando a opção abaixo, você concorda que leu e aceita todos os termos mencionados acima<br>
+    <%= f.check_box :accept_terms %> Sim, eu aceito.
+  </div>
+	<div class="field">
+		<%= f.label :goal_id %><br>
+	  <%= f.collection_select :goal_id, Goal.all, :id, :name, :selected => @requester.goal.id %>
+	</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

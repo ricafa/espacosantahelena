@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :requesters
+  resources :goals
   devise_for :users
   resources :parties
 

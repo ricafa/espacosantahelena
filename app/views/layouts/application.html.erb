@@ -1,13 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sthelena</title>
+  <title>Espaço Santa Helena</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1><a href='/'>Edicula St. Helena</a></h1>
 
+<% if user_signed_in?  %>
+	<%= link_to 'Novo Evento', new_party_path %> |
+	<%= link_to 'Finalidade', goals_path %> | 
+	<%= link_to 'Interessados', requesters_path %>
+	<%= link_to 'Sair', destroy_user_session_path, :method=>'delete', data: {confirm: "Deseja sair?"} %> 
+<% else %>
+	<%= link_to 'Login', new_user_session_path %>
+<% end %>
 <p class="alert"><%= alert %></p>
 
 <%= yield %>

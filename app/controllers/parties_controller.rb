@@ -1,5 +1,6 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index]
 
   # GET /parties
   # GET /parties.json
